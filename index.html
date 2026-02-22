@@ -1,0 +1,875 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>С 23 февраля — для дедушки</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', 'Arial', sans-serif;
+        }
+        body {
+            min-height: 100vh;
+            background: linear-gradient(145deg, #0a1928 0%, #1a2f3f 100%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px 10px;
+            position: relative;
+            overflow-x: hidden;
+        }
+        /* ПЛАВАЮЩИЕ НОСКИ И ГЕЛЬ */
+        .floating-items {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+        .sock, .shaving-gel {
+            position: absolute;
+            font-size: 3.2rem;
+            opacity: 0.25;
+            filter: drop-shadow(0 4px 6px rgba(212, 175, 55, 0.3));
+            animation: floatAround 18s infinite alternate ease-in-out;
+        }
+        .sock:nth-child(1) { top: 10%; left: 5%; animation-duration: 22s; color: #c41e3a; }
+        .sock:nth-child(2) { bottom: 15%; right: 8%; animation-duration: 19s; font-size: 3.2rem; color: #d4af37; }
+        .sock:nth-child(3) { top: 40%; left: 80%; animation-duration: 25s; transform: rotate(15deg); color: #2e5c4e; }
+        .shaving-gel:nth-child(4) { top: 70%; left: 12%; animation-duration: 20s; font-size: 3rem; color: #4169e1; }
+        .shaving-gel:nth-child(5) { top: 20%; right: 15%; animation-duration: 24s; transform: rotate(-10deg); color: #c41e3a; }
+        .shaving-gel:nth-child(6) { bottom: 30%; left: 50%; animation-duration: 21s; font-size: 3.5rem; color: #d4af37; }
+        @keyframes floatAround {
+            0% { transform: translate(0, 0) rotate(0deg); }
+            100% { transform: translate(20px, -20px) rotate(15deg); }
+        }
+
+        /* ОСНОВНОЙ КОНТЕНТ */
+        .content {
+            position: relative;
+            z-index: 10;
+            width: 100%;
+            max-width: 1400px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 40px;
+        }
+
+        /* ДВИЖУЩИЙСЯ ЗАГОЛОВОК */
+        .moving-text {
+            width: 100%;
+            background: linear-gradient(90deg, #0a1928, #1e3a5f, #2e5c4e);
+            padding: 22px 0;
+            border-radius: 60px;
+            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.5);
+            overflow: hidden;
+            border: 4px solid #d4af37;
+        }
+        .moving-text span {
+            display: inline-block;
+            white-space: nowrap;
+            font-size: clamp(2rem, 6vw, 3.5rem);
+            font-weight: 900;
+            color: #fff;
+            text-shadow: 3px 3px 0 #c41e3a, 5px 5px 0 #1a2f3f;
+            animation: scrollText 12s linear infinite;
+            padding-left: 20px;
+            letter-spacing: 3px;
+        }
+        .moving-text span::after {
+            content: " ★ С 23 февраля! С днем защитника отечества! ★ ";
+            white-space: nowrap;
+            padding-left: 20px;
+        }
+        @keyframes scrollText {
+            0% { transform: translateX(0%); }
+            100% { transform: translateX(-50%); }
+        }
+
+        /* БЛОК ПОЖЕЛАНИЯ (без медалек) */
+        .wish-block {
+            width: 100%;
+            text-align: center;
+            margin: 10px 0 20px;
+            padding: 30px 30px;
+            background: linear-gradient(145deg, rgba(30, 58, 95, 0.7), rgba(10, 25, 40, 0.7));
+            backdrop-filter: blur(5px);
+            border-radius: 80px;
+            border: 3px solid #d4af37;
+            box-shadow: 0 0 30px rgba(212, 175, 55, 0.3);
+        }
+        
+        .wish-text {
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: #fff;
+            text-shadow: 2px 2px 0 #c41e3a, 4px 4px 0 #0a1928;
+            letter-spacing: 2px;
+            line-height: 1.5;
+        }
+        
+        .wish-text span {
+            display: inline-block;
+            animation: gentleWave 3s ease infinite;
+            color: #d4af37;
+            font-size: 2.5rem;
+        }
+        
+        @keyframes gentleWave {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-5px); }
+        }
+        
+        /* ЛОГИЧЕСКОЕ СОЕДИНЕНИЕ МЕЖДУ ПОЖЕЛАНИЕМ И КАРТОЧКАМИ */
+        .bridge-text {
+            font-size: 1.8rem;
+            color: #d4af37;
+            margin: 10px 0 5px;
+            font-weight: 500;
+            text-shadow: 1px 1px 0 #c41e3a;
+            letter-spacing: 2px;
+        }
+        
+        .bridge-decoration {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            margin: 15px 0;
+        }
+        
+        .bridge-line {
+            height: 2px;
+            width: 80px;
+            background: linear-gradient(90deg, transparent, #d4af37, #c41e3a, #d4af37, transparent);
+        }
+        
+        .bridge-icon {
+            font-size: 2.5rem;
+            animation: gentleSpin 4s linear infinite;
+        }
+        
+        @keyframes gentleSpin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* КАРТОЧКИ */
+        .cards {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            align-items: stretch;
+            gap: 30px;
+            margin: 20px 0;
+            width: 100%;
+        }
+        
+        .card {
+            flex: 1 1 300px;
+            min-width: 260px;
+            max-width: 400px;
+            background: linear-gradient(145deg, #1e3a5f, #0a1928);
+            border-radius: 50px;
+            padding: 35px 20px 40px;
+            box-shadow: 0 20px 30px rgba(0,0,0,0.8), 0 0 20px rgba(212, 175, 55, 0.3);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            transition: transform 0.3s cubic-bezier(0.2, 0.9, 0.3, 1.2), box-shadow 0.3s;
+            border: 6px solid #d4af37;
+            cursor: pointer;
+        }
+        
+        .card:hover {
+            transform: scale(1.08) translateY(-12px);
+            box-shadow: 0 30px 40px rgba(0,0,0,0.9), 0 0 40px #d4af37;
+            border-color: #c41e3a;
+        }
+        
+        .photo {
+            width: 300px;
+            height: 300px;
+            background: #2e5c4e;
+            border-radius: 40px;
+            border: 8px solid #d4af37;
+            object-fit: cover;
+            margin-bottom: 25px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+        }
+        
+        .card p {
+            font-family: 'Impact', 'Arial Black', 'Oswald', sans-serif;
+            font-size: 2.4rem;
+            font-weight: 900;
+            color: #fff;
+            text-shadow: 3px 3px 0 #c41e3a, 2px 2px 0 #000;
+            letter-spacing: 4px;
+            margin-top: 15px;
+            background: #1e3a5f;
+            padding: 15px 30px;
+            border-radius: 60px;
+            border: 4px solid #d4af37;
+            width: 100%;
+            text-align: center;
+            text-transform: uppercase;
+            word-break: break-word;
+        }
+
+        /* СТИЛИ ДЛЯ ПОДАРКОВ */
+        .gift-section {
+            width: 100%;
+            margin: 30px 0;
+            text-align: center;
+        }
+        
+        .gift-title {
+            color: #fff;
+            text-shadow: 3px 3px 0 #c41e3a, 5px 5px 0 #1a2f3f;
+            margin-bottom: 20px;
+            font-size: 2.5rem;
+        }
+        
+        .gift-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
+        }
+        
+        .gift-card {
+            background: linear-gradient(145deg, #1e3a5f, #0a1928);
+            border: 5px solid #d4af37;
+            border-radius: 50px;
+            padding: 30px 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 220px;
+            box-shadow: 0 15px 25px rgba(0,0,0,0.7);
+        }
+        
+        .gift-card:hover {
+            transform: scale(1.15) translateY(-12px);
+            box-shadow: 0 0 40px #d4af37;
+            border-color: #c41e3a;
+            background: linear-gradient(145deg, #2e5c4e, #1e3a5f);
+        }
+        
+        .gift-card h3 {
+            font-family: 'Impact', 'Arial Black', sans-serif;
+            letter-spacing: 2px;
+            margin: 15px 0 8px;
+            color: #fff;
+            padding: 12px;
+            border-radius: 40px;
+            font-size: 1.4rem;
+            background: rgba(196, 30, 58, 0.3);
+            border: 2px solid #d4af37;
+        }
+        
+        .gift-card p {
+            color: #d4af37;
+            font-size: 1.2rem;
+            font-weight: bold;
+        }
+        
+        .gift-message {
+            margin-top: 30px;
+            font-size: 2.2rem;
+            min-height: 140px;
+            background: linear-gradient(145deg, #1e3a5f, #0a1928);
+            border-radius: 70px;
+            padding: 30px;
+            color: #fff;
+            border: 5px solid #d4af37;
+            display: none;
+            text-align: center;
+            font-weight: bold;
+            box-shadow: 0 0 40px #d4af37;
+        }
+        
+        .close-btn {
+            margin-top: 20px;
+            padding: 12px 30px;
+            background: #c41e3a;
+            color: #fff;
+            border: 3px solid #d4af37;
+            border-radius: 50px;
+            cursor: pointer;
+            font-size: 1.3rem;
+            font-weight: bold;
+        }
+        
+        .close-btn:hover {
+            background: #a0152e;
+            transform: scale(1.05);
+            border-color: #fff;
+        }
+
+        /* СТИЛИ ДЛЯ КОНФЕТТИ */
+        #confetti-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 2000;
+        }
+
+        /* ГОРИЗОНТАЛЬНАЯ СТРОКА БУКВ */
+        .horizontal-wrapper {
+            display: flex;
+            justify-content: center;
+            margin: 30px 0 20px;
+            background: rgba(10, 25, 40, 0.8);
+            backdrop-filter: blur(5px);
+            padding: 30px 25px;
+            border-radius: 80px;
+            border: 4px solid #d4af37;
+            width: 100%;
+            overflow-x: auto;
+            gap: 8px;
+            box-shadow: 0 0 30px rgba(212, 175, 55, 0.3);
+        }
+        .letter-group {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-width: 65px;
+        }
+        .letter-btn {
+            background: #1e3a5f;
+            border: none;
+            width: 70px;
+            height: 70px;
+            font-size: 3rem;
+            font-weight: 900;
+            color: #fff;
+            border-radius: 40px;
+            box-shadow: 0 6px 0 #0a1928, 0 10px 15px rgba(0,0,0,0.5);
+            cursor: pointer;
+            transition: 0.07s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 3px solid #d4af37;
+            margin-bottom: 8px;
+            flex-shrink: 0;
+        }
+        .letter-btn:active {
+            transform: translateY(8px);
+            box-shadow: 0 2px 0 #0a1928, 0 5px 10px black;
+        }
+        .desc-badge {
+            background: #c41e3a;
+            color: #fff;
+            padding: 8px 15px;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: 600;
+            text-align: center;
+            border: 2px solid #d4af37;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.6);
+            opacity: 0;
+            transform: scale(0.8);
+            transition: opacity 0.2s, transform 0.2s;
+            pointer-events: none;
+            white-space: nowrap;
+            max-width: 140px;
+        }
+        .desc-badge.show {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        /* СТИЛИ ДЛЯ НИЖНЕГО БЛОКА */
+        .bottom-section {
+            width: 100%;
+            margin-top: 50px;
+            margin-bottom: 30px;
+        }
+        
+        .bottom-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
+        }
+        
+        .bottom-card {
+            flex: 1 1 240px;
+            min-width: 220px;
+            background: linear-gradient(145deg, #1e3a5f, #0a1928);
+            backdrop-filter: blur(5px);
+            border: 5px solid #d4af37;
+            border-radius: 60px;
+            padding: 35px 20px;
+            text-align: center;
+            color: #fff;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            box-shadow: 0 15px 25px rgba(0,0,0,0.7);
+        }
+        
+        .bottom-card:hover {
+            transform: scale(1.1) translateY(-10px);
+            border-color: #c41e3a;
+            box-shadow: 0 0 40px #d4af37;
+            background: linear-gradient(145deg, #2e5c4e, #1e3a5f);
+        }
+        
+        .bottom-emoji {
+            font-size: 4.5rem;
+            margin-bottom: 15px;
+            filter: drop-shadow(0 0 10px #d4af37);
+        }
+        
+        .bottom-title {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #d4af37;
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 0 #c41e3a;
+            letter-spacing: 2px;
+        }
+        
+        .bottom-content {
+            font-size: 1.5rem;
+            color: #fff;
+            min-height: 140px;
+            line-height: 1.6;
+            font-weight: 500;
+            background: rgba(196, 30, 58, 0.2);
+            padding: 15px;
+            border-radius: 50px;
+            border: 2px solid #d4af37;
+        }
+
+        /* КРЕАТИВНАЯ ПОДПИСЬ */
+        .signature-block {
+            width: 100%;
+            margin: 40px 0 20px;
+            text-align: center;
+            position: relative;
+        }
+        
+        .signature-decoration {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 15px;
+        }
+        
+        .signature-line {
+            height: 3px;
+            width: 100px;
+            background: linear-gradient(90deg, transparent, #d4af37, #c41e3a, #d4af37, transparent);
+        }
+        
+        .signature-heart {
+            font-size: 3rem;
+            animation: heartbeat 1.5s ease infinite;
+            filter: drop-shadow(0 0 15px #c41e3a);
+        }
+        
+        @keyframes heartbeat {
+            0% { transform: scale(1); }
+            30% { transform: scale(1.2); }
+            50% { transform: scale(1.1); }
+            70% { transform: scale(1.2); }
+            100% { transform: scale(1); }
+        }
+        
+        .signature-text {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: #fff;
+            text-shadow: 3px 3px 0 #c41e3a, 5px 5px 0 #d4af37;
+            letter-spacing: 4px;
+            margin: 15px 0;
+            font-family: 'Pacifico', 'Segoe Script', cursive;
+        }
+        
+        .signature-name {
+            font-size: 3.5rem;
+            font-weight: 900;
+            color: #d4af37;
+            text-shadow: 4px 4px 0 #c41e3a, 6px 6px 0 #0a1928;
+            letter-spacing: 6px;
+            margin: 10px 0;
+            text-transform: uppercase;
+            background: linear-gradient(145deg, #1e3a5f, #0a1928);
+            display: inline-block;
+            padding: 20px 50px;
+            border-radius: 100px;
+            border: 4px solid #d4af37;
+            box-shadow: 0 0 30px rgba(212, 175, 55, 0.5);
+            transform: rotate(-1deg);
+        }
+        
+        .signature-stars {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 15px;
+            font-size: 2rem;
+        }
+        
+        .signature-stars span {
+            animation: twinkle 2s infinite;
+            color: #d4af37;
+        }
+        
+        .signature-stars span:nth-child(2) { animation-delay: 0.3s; }
+        .signature-stars span:nth-child(3) { animation-delay: 0.6s; }
+        .signature-stars span:nth-child(4) { animation-delay: 0.9s; }
+        .signature-stars span:nth-child(5) { animation-delay: 1.2s; }
+        
+        @keyframes twinkle {
+            0% { opacity: 0.3; transform: scale(0.8); }
+            50% { opacity: 1; transform: scale(1.2); text-shadow: 0 0 20px gold; }
+            100% { opacity: 0.3; transform: scale(0.8); }
+        }
+
+        @media (max-width: 700px) {
+            .horizontal-wrapper { padding: 20px 15px; }
+            .letter-btn { width: 55px; height: 55px; font-size: 2.5rem; }
+            .desc-badge { font-size: 0.9rem; padding: 5px 10px; }
+            .card { min-width: 220px; }
+            .photo { width: 180px; height: 180px; }
+            .card p { font-size: 2rem; padding: 12px 20px; }
+            .gift-card { width: 180px; }
+            .gift-card h3 { font-size: 1.2rem; }
+            .bottom-card { min-width: 160px; }
+            .bottom-title { font-size: 1.4rem; }
+            .bottom-content { font-size: 1.3rem; }
+            .signature-text { font-size: 2rem; }
+            .signature-name { font-size: 2.5rem; padding: 15px 30px; }
+            .wish-text { font-size: 1.8rem; }
+            .bridge-text { font-size: 1.4rem; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Канвас для конфетти -->
+    <canvas id="confetti-canvas"></canvas>
+
+    <!-- носки и гель на фоне -->
+    <div class="floating-items">
+        <div class="sock">🧦</div>
+        <div class="sock">🧦</div>
+        <div class="sock">🧦</div>
+        <div class="shaving-gel">🧴</div>
+        <div class="shaving-gel">🧴</div>
+        <div class="shaving-gel">🧴</div>
+    </div>
+
+    <div class="content">
+        <!-- движущийся заголовок -->
+        <div class="moving-text">
+            <span> ★ С 23 февраля! С днем защитника отечества! ★ </span>
+        </div>
+
+        <!-- БЛОК ПОЖЕЛАНИЯ (без медалек) -->
+        <div class="wish-block">
+            <div class="wish-text">
+                <span>⭐</span> Дорогой дедушка! <span>⭐</span><br>
+                Поздравляю тебя с 23 февраля!<br>
+                Желаю крепкого здоровья, бодрости духа<br>
+                и чтобы каждый день радовал теплом и улыбками!
+            </div>
+        </div>
+
+        <!-- ЛОГИЧЕСКОЕ СОЕДИНЕНИЕ МЕЖДУ ПОЖЕЛАНИЕМ И КАРТОЧКАМИ -->
+        <div class="bridge-text">
+            Ты у нас самый лучший — и это видно сразу!
+        </div>
+        <div class="bridge-decoration">
+            <div class="bridge-line"></div>
+            <div class="bridge-icon">⭐</div>
+            <div class="bridge-line"></div>
+        </div>
+
+        <!-- карточки дедушки -->
+        <div class="cards">
+            <div class="card">
+                <img class="photo" src="dedulia.png" alt="Дедушка">
+                <p>САМЫЙ СИЛЬНЫЙ</p>
+            </div>
+            <div class="card">
+                <img class="photo" src="dedulia2.png" alt="Дедушка">
+                <p>САМЫЙ УМНЫЙ</p>
+            </div>
+            <div class="card">
+                <img class="photo" src="dedulia3.jpg" alt="Дедушка">
+                <p>САМЫЙ САМЫЙ</p>
+            </div>
+        </div>
+
+        <!-- БЛОК ВЫБОРА ПОДАРКА -->
+        <div class="gift-section">
+            <h2 class="gift-title">🎁 Дедушка, выбирай подарок! 🎁</h2>
+            
+            <div class="gift-container">
+                <!-- Подарок 1: Носки -->
+                <div class="gift-card" onclick="chooseGift('socks')">
+                    <div style="font-size: 5.5rem;">🧦</div>
+                    <h3 style="background: #c41e3a;">НОСКИ</h3>
+                    <p>Армейский запас</p>
+                </div>
+                
+                <!-- Подарок 2: Пена для бритья -->
+                <div class="gift-card" onclick="chooseGift('shaving')">
+                    <div style="font-size: 5.5rem;">🧴</div>
+                    <h3 style="background: #2e5c4e;">ПЕНА</h3>
+                    <p>Для гладкого лица</p>
+                </div>
+                
+                <!-- Подарок 3: Водка -->
+                <div class="gift-card" onclick="chooseGift('vodka')">
+                    <div style="font-size: 5.5rem;">🥃</div>
+                    <h3 style="background: #d4af37;">ВОДКА</h3>
+                    <p>По 100 грамм</p>
+                </div>
+            </div>
+            
+            <!-- Место для поздравления после выбора -->
+            <div id="giftMessage" class="gift-message"></div>
+        </div>
+
+        <!-- горизонтальная строка букв -->
+        <div class="horizontal-wrapper" id="horizontalContainer"></div>
+        <div class="signature">Нажми на букву — узнай качество</div>
+
+        <!-- НИЖНИЙ БЛОК С 4 ФУНКЦИЯМИ -->
+        <div class="bottom-section">
+            <div class="bottom-grid">
+                <!-- 1. Кнопка "Сделать сюрприз" -->
+                <div class="bottom-card" onclick="doSurprise()">
+                    <div class="bottom-emoji">🎁</div>
+                    <div class="bottom-title">СЮРПРИЗ</div>
+                    <div class="bottom-content" id="surpriseContent">
+                        Нажми для сюрприза
+                    </div>
+                </div>
+                
+                <!-- 2. Армейский календарь -->
+                <div class="bottom-card" onclick="showCalendar()">
+                    <div class="bottom-emoji">📅</div>
+                    <div class="bottom-title">КАЛЕНДАРЬ</div>
+                    <div class="bottom-content" id="calendarContent">
+                        ФЕВРАЛЬ 2025<br>
+                        23 — ВЫХОДНОЙ<br>
+                        24 — отдых<br>
+                        25 — на диване
+                    </div>
+                </div>
+                
+                <!-- 3. Медаль -->
+                <div class="bottom-card" onclick="showMedal()">
+                    <div class="bottom-emoji">🏅</div>
+                    <div class="bottom-title">МЕДАЛЬ</div>
+                    <div class="bottom-content" id="medalContent">
+                        Нажми, чтобы получить
+                    </div>
+                </div>
+                
+                <!-- 4. Секретное послание -->
+                <div class="bottom-card" onclick="showSecret()">
+                    <div class="bottom-emoji">✨</div>
+                    <div class="bottom-title">СЕКРЕТ</div>
+                    <div class="bottom-content" id="secretContent">
+                        Нажми на звезду
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- КРЕАТИВНАЯ ПОДПИСЬ -->
+        <div class="signature-block">
+            <div class="signature-decoration">
+                <div class="signature-line"></div>
+                <div class="signature-heart">❤️</div>
+                <div class="signature-line"></div>
+            </div>
+            
+            <div class="signature-text">
+                С любовью,
+            </div>
+            
+            <div class="signature-name">
+                ТВОЯ ВНУЧКА, АЛЁНКА
+            </div>
+            
+            <div class="signature-stars">
+                <span>✨</span>
+                <span>⭐</span>
+                <span>✨</span>
+                <span>⭐</span>
+                <span>✨</span>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1"></script>
+    <script>
+        function startConfetti() {
+            confetti({
+                particleCount: 150,
+                spread: 100,
+                origin: { y: 0.6 },
+                colors: ['#d4af37', '#c41e3a', '#1e3a5f', '#2e5c4e', '#4169e1', '#fff']
+            });
+            
+            setTimeout(() => {
+                confetti({
+                    particleCount: 100,
+                    spread: 70,
+                    origin: { y: 0.5, x: 0.2 },
+                    colors: ['#d4af37', '#c41e3a']
+                });
+            }, 200);
+            
+            setTimeout(() => {
+                confetti({
+                    particleCount: 100,
+                    spread: 70,
+                    origin: { y: 0.5, x: 0.8 },
+                    colors: ['#1e3a5f', '#2e5c4e']
+                });
+            }, 400);
+        }
+
+        function chooseGift(gift) {
+            let message = '';
+            let emoji = '';
+            let bgColor = '';
+            
+            if (gift === 'socks') {
+                emoji = '🧦 🧦 🧦';
+                message = 'НОСКИ! Самый нужный подарок! Носи — не сноси!';
+                bgColor = '#c41e3a';
+            } else if (gift === 'shaving') {
+                emoji = '🧴 🪒 ✨';
+                message = 'ПЕНА! Гладкое лицо — как на параде!';
+                bgColor = '#2e5c4e';
+            } else if (gift === 'vodka') {
+                emoji = '🥃 🔥 🥃';
+                message = 'ВОДКА! По 100 грамм — за здоровье! Чур много не пить!';
+                bgColor = '#d4af37';
+            }
+            
+            const messageDiv = document.getElementById('giftMessage');
+            messageDiv.innerHTML = '<span style="font-size: 4rem;">' + emoji + '</span><br><br>' + message;
+            messageDiv.style.display = 'block';
+            messageDiv.style.background = bgColor;
+            messageDiv.style.color = '#fff';
+            
+            messageDiv.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            
+            if (!document.getElementById('closeGiftBtn')) {
+                const closeBtn = document.createElement('button');
+                closeBtn.id = 'closeGiftBtn';
+                closeBtn.innerHTML = '✕ Закрыть';
+                closeBtn.className = 'close-btn';
+                closeBtn.onclick = function() {
+                    messageDiv.style.display = 'none';
+                    this.remove();
+                };
+                messageDiv.appendChild(closeBtn);
+            }
+            
+            startConfetti();
+        }
+
+        // 1. Функция для сюрприза
+        function doSurprise() {
+            startConfetti();
+            document.getElementById('surpriseContent').innerHTML = '❤️ ТЫ ЛУЧШИЙ, ДЕДУШКА! ❤️';
+        }
+
+        // 2. Функция для календаря
+        function showCalendar() {
+            document.getElementById('calendarContent').innerHTML = 
+                '📅 ФЕВРАЛЬ 2025<br>' +
+                '23 — 🎉 ПРАЗДНИК<br>' +
+                '24 — 😴 ОТДЫХ<br>' +
+                '25 — 🛌 ДИВАН';
+        }
+
+        // 3. Функция для медали
+        function showMedal() {
+            document.getElementById('medalContent').innerHTML = '🏅 ЗА ЗАСЛУГИ ПЕРЕД ВНУЧКАМИ! 🏅';
+            startConfetti();
+        }
+
+        // 4. Функция для секретного послания
+        function showSecret() {
+            document.getElementById('secretContent').innerHTML = '✨ P.S. ТЫ — НАШ ГЕРОЙ! ✨';
+        }
+
+        // Код для букв
+        (function() {
+            const letters = [
+                { letter: 'С', desc: 'сильному' },
+                { letter: 'Д', desc: 'доброму' },
+                { letter: 'Н', desc: 'настойчивому' },
+                { letter: 'Е', desc: 'единственному' },
+                { letter: 'М', desc: 'мужественному' },
+                { letter: 'З', desc: 'замечательному' },
+                { letter: 'А', desc: 'амбициозному' },
+                { letter: 'Щ', desc: 'щедрому' },
+                { letter: 'И', desc: 'интересному' },
+                { letter: 'Т', desc: 'трудолюбивому' },
+                { letter: 'Н', desc: 'надежному' },
+                { letter: 'И', desc: 'исключительному' },
+                { letter: 'К', desc: 'красивому' },
+                { letter: 'А', desc: 'активному' }
+            ];
+
+            const container = document.getElementById('horizontalContainer');
+            if (!container) return;
+
+            letters.forEach((item, index) => {
+                const group = document.createElement('div');
+                group.className = 'letter-group';
+
+                const btn = document.createElement('button');
+                btn.className = 'letter-btn';
+                btn.textContent = item.letter;
+                btn.setAttribute('data-index', index);
+
+                btn.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    document.querySelectorAll('.desc-badge').forEach(b => b.classList.remove('show'));
+                    document.getElementById(`badge-${index}`)?.classList.add('show');
+                });
+
+                const badge = document.createElement('span');
+                badge.className = 'desc-badge';
+                badge.textContent = item.desc;
+                badge.id = `badge-${index}`;
+
+                group.appendChild(btn);
+                group.appendChild(badge);
+                container.appendChild(group);
+            });
+
+            document.addEventListener('click', (e) => {
+                if (!e.target.classList.contains('letter-btn')) {
+                    document.querySelectorAll('.desc-badge').forEach(b => b.classList.remove('show'));
+                }
+            });
+        })();
+    </script>
+</body>
+</html>
